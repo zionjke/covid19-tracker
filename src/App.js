@@ -11,6 +11,7 @@ import Card from "@material-ui/core/Card";
 import Table from "./components/Table";
 import {sortData} from "./utils/utils";
 import Linegraph from "./components/Linegraph";
+import "leaflet/dist/leaflet.css"
 
 function App() {
 
@@ -18,16 +19,22 @@ function App() {
     const [country, setCountry] = useState('worldwide');
     const [countryInfo, setCountryInfo] = useState({});
     const [tableData, setTableData] = useState([]);
+    const [mapCenter, setMapCenter] = useState({lat:50.450001, lng:30.523333});
+    const [mapZoom, setMapZoom] = useState(3);
+    const [mapCountries, setMapCountries] = useState([]);
 
     const onCountryChange = async (e) => {
         const url = e.target.value === 'worldwide'
             ? 'all'
             : `countries/${e.target.value}`
 
-        const countryInfo = await api.countriesData(url)
+        const data = await api.countriesData(url)
         setCountry(e.target.value)
-        setCountryInfo(countryInfo)
+        setCountryInfo(data)
+        setMapCenter([data.countryInfo.lat,data.countryInfo.long])
+        setMapZoom(5)
     }
+    console.log(country)
 
     useEffect(() => {
         api.allCountriesInfo().then(data => setCountryInfo(data))
@@ -44,6 +51,7 @@ function App() {
             const sortedData = sortData(data)
             setTableData(sortedData)
             setCountries(countries)
+            setMapCountries(data)
         }
         getCountries()
     }, [])
@@ -76,7 +84,9 @@ function App() {
                              total={countryInfo.deaths}
                              cases={countryInfo.todayDeaths}/>
                 </div>
-                <Map/>
+                <Map center={mapCenter}
+                     countries={mapCountries}
+                     zoom={mapZoom}/>
             </div>
             <Card className="app__right">
                 <CardContent>

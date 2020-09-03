@@ -80,8 +80,6 @@ const LineGraph = ({casesType='cases'}) => {
 
     }, [casesType])
 
-    console.log(data)
-
 
     return (
         <div>
