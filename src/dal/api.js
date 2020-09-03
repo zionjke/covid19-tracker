@@ -17,5 +17,10 @@ export const api = {
 
     allCountriesInfo() {
         return instanse.get('all').then(r => r.data)
+    },
+
+    historyData() {
+        return  instanse.get('historical/all?lastdays=120').then(r => r.data)
     }
+
 }
