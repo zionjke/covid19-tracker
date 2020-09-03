@@ -7,6 +7,8 @@ body {
 }
 
 .app {
+  display: flex;
+  justify-content: space-evenly;
 
   &__header {
     display: flex;
@@ -15,8 +17,20 @@ body {
     justify-content: space-between;
   }
 
+  &__left {
+    flex: 0.9; // занимает 90 процентов блока
+  }
+
   &__stats {
     display: flex;
     justify-content: space-between;
+  }
+
+
+}
+
+@media (max-width: 990px) {
+  .app {
+    flex-direction: column;
   }
 }

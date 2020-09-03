@@ -9,5 +9,13 @@ const instanse = axios.create({
 export const api = {
     allCountriesData() {
         return instanse.get('countries').then(r => r.data)
+    },
+
+    countriesData(countryCode) {
+        return instanse.get(countryCode).then(r => r.data)
+    },
+
+    allCountriesInfo() {
+        return instanse.get('all').then(r => r.data)
     }
 }
