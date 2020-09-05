@@ -32,7 +32,7 @@ function App() {
         setCountry(e.target.value)
         setCountryInfo(data)
         setMapCenter([data.countryInfo.lat,data.countryInfo.long])
-        setMapZoom(5)
+        setMapZoom(4)
     }
     console.log(country)
 
