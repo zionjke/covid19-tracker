@@ -10,21 +10,52 @@ body {
   display: flex;
   justify-content: space-evenly;
 
+  &__dropdown {
+    background-color: white;
+  }
+
   &__header {
     display: flex;
     align-items: center;
     margin-bottom: 20px;
     justify-content: space-between;
+
+    h1 {
+      color: #fc3c3c;
+      font-size: 2rem;
+    }
   }
 
   &__left {
     flex: 0.9; // занимает 90 процентов блока
   }
 
+  &__right {
+    display: flex;
+    flex-direction: column;
+
+    //& .MuiCardContentRoot {
+    //  display: flex;
+    //  flex-direction: column;
+    //  flex-grow: 1;
+    //}
+
+  }
+
+  &__graph {
+    flex-grow: 1;
+  }
+
+  &__graphTitle {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
   &__stats {
     display: flex;
     justify-content: space-between;
   }
+
 
 
 }

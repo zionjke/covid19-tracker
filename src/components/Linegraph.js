@@ -3,6 +3,7 @@ import {useEffect, useState} from "react";
 import {api} from "../dal/api";
 import {Line} from "react-chartjs-2";
 import numeral from "numeral"
+import '../scss/App.scss'
 
 const options = {
     legend: {
@@ -50,7 +51,7 @@ const options = {
     }
 }
 
-const LineGraph = ({casesType='cases'}) => {
+const LineGraph = ({casesType='cases',className}) => {
     const [data, setData] = useState({});
 
     const buildChartData = (data, casesType = 'cases') => {
@@ -73,7 +74,7 @@ const LineGraph = ({casesType='cases'}) => {
     useEffect(() => {
         const fetchData = async () => {
             const data = await api.historyData()
-            let charData = buildChartData(data, "cases")
+            let charData = buildChartData(data, casesType)
             setData(charData)
         }
         fetchData()
@@ -82,7 +83,7 @@ const LineGraph = ({casesType='cases'}) => {
 
 
     return (
-        <div>
+        <div className={className}>
             {data && data.length > 0 && (
                 <Line data={{
                     datasets: [
